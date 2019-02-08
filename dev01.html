@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+
+<head>
+<title>Cité Télécom</title>
+</head>
+
+<style>
+
+.res{
+		color: #08FF00;
+	font-weight: bold;
+	font-size: 40px;
+		text-align: center;
+		text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
+		
+}
+
+.pop{
+	text-align: center;
+	color: red;
+	font-weight: bold;
+	font-size: 40px;
+	text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
+	
+}
+
+.titres{
+	
+	color: #33A2FF;
+	font-weight: bold;
+	font-size: 24px;
+	text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
+	
+}
+
+
+.option{ 
+	color: white;
+	font-weight: bold;
+	text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
+}
+
+
+
+    .center {
+
+      
+      margin: 0 auto;
+      
+    }
+    
+
+    .awesome {
+    	    border-style: solid;
+    	    
+    	
+      
+      font-family: futura;
+      font-style: italic;
+      
+      width:100%;
+      
+      margin: 0 auto;
+      text-align: center;
+      
+      color:#313131;
+      font-size:45px;
+      font-weight: bold;
+      position: absolute;
+      -webkit-animation:colorchange 20s infinite alternate;
+      
+      
+    }
+
+    @-webkit-keyframes colorchange {
+      0% {
+        
+        color: blue;
+      }
+      
+      10% {
+        
+        color: #8e44ad;
+      }
+      
+      20% {
+        
+        color: #1abc9c;
+      }
+      
+      30% {
+        
+        color: #d35400;
+      }
+      
+      40% {
+        
+        color: blue;
+      }
+      
+      50% {
+        
+        color: #34495e;
+      }
+      
+      60% {
+        
+        color: blue;
+      }
+      
+      70% {
+        
+        color: #2980b9;
+      }
+      80% {
+     
+        color: #f1c40f;
+      }
+      
+      90% {
+     
+        color: #2980b9;
+      }
+      
+      100% {
+        
+        color: pink;
+      }
+    }
+    
+
+</style>
+
+<script>
+
+function calculer(){
+	
+	var m = document.getElementById('radio_oui').checked;
+	var p = document.getElementById('sel_province').value;
+	var tele = document.getElementById('check_tele').checked;
+	var internet = document.getElementById('check_internet').checked;
+	var mobile = document.getElementById('check_mobile').checked;
+	var alarme = document.getElementById('check_alarme').checked;
+	var r = document.querySelectorAll('input[type="checkbox"]:checked').length;
+	var t = 0;
+
+	if( r == 0) document.getElementById('alert').innerHTML ="Veulliez choisir au moin un service s.v.p."; 
+	if(tele == true) t = t + 45;
+	if(internet == true) t = t + 29;
+	if(mobile == true) t = t + 58;
+	if(alarme == true && p == "Québec") t = t + 13;
+	if(alarme == true && p == "Ontario") t = t + 18;
+	if(r >= 3) t = t - 15;
+	if(m == true) t = t - 10;
+	if(p == "Ontario") t = t * 1.07;
+	if(p == "Québec") t = t * 1.14;
+	
+	if( r > 0 ) document.getElementById('resultat').innerHTML ="Le total est de : " + t + " $";
+}
+</script>
+
+<body background="earth.jpg" style="font-family:verdana;">
+
+
+<p class='awesome'>Cité Télécom</p>
+<h1>heading<h1>
+
+<h2>heading<h2>
+
+<p class='titres'>Services Offerts</p>
+<p class='option'><label><input type='checkbox' id='check_tele' name='service'>Télévision</label></p>
+<p class='option'><label><input type='checkbox' id='check_internet' name='service'>Internet</label></p>
+<p class='option'><label><input type='checkbox' id='check_mobile' name='service'>Téléphonie Mobile</label></p>
+<p class='option'><label><input type='checkbox' id='check_alarme' name='service'>Alarme Résidentielle</label></p>
+
+<p class='titres'>Membre Privilège</p>
+<p class='option'><label><input type='radio' id='radio_oui' name='membre' value='Oui'>Oui</label></p>
+<p class='option'><label><input type='radio' id='radio_non' name='membre' value='Non'>Non</label></p>
+
+<p class='titres'>Taxes Provinciales</p>
+<select id='sel_province'>
+<option class='option'>Ontario</option>
+<option class='option'>Québec</option>
+</select>
+
+<p class='option'><button onClick="calculer()">Calculez</button></p>
+
+<p class='res' id='resultat'</p>
+<p class='pop' id='alert'</p>
+
+
+
+
+
+</body>
+
+</html>
